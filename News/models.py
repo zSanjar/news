@@ -13,7 +13,7 @@ class News(BaseModel):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        related_name="comments",
+        related_name="comments",)
     slug = models.SlugField(null=False, blank=False, unique=True)
     default_images = models.ManyToManyField("common.MediaFile", blank=True)
     is_active = models.BooleanField(default=True)
@@ -88,14 +88,14 @@ class Comment(BaseModel):
         verbose_name_plural = _("Comments")
 
 
-lass Category(BaseModel):
-    name = models.CharField(max_length=255, null=False, blank=False)
-    slug = models.SlugField(null=False, blank=False, unique=True)
-    image = models.ImageField(upload_to="categories", null=True, blank=True)
+    class Category(BaseModel):
+        name = models.CharField(max_length=255, null=False, blank=False)
+        slug = models.SlugField(null=False, blank=False, unique=True)
+        image = models.ImageField(upload_to="categories", null=True, blank=True)
 
-    def __str__(self):
-        return self.name
+        def __str__(self):
+            return self.name
 
-    class Meta:
-        verbose_name = _("Category")
-        verbose_name_plural = _("Categories")
+        class Meta:
+            verbose_name = _("Category")
+            verbose_name_plural = _("Categories")
